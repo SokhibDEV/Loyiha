@@ -8,8 +8,16 @@ import { UserGuideModule } from './user-guide/user-guide.module';
 
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://127.0.0.1:27017/project'), UsersModule, GuideModule, UserGuideModule],
+  imports: [
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/project'),
+    UsersModule,
+    GuideModule,
+    UserGuideModule,
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    
+  ],
 })
 export class AppModule {}

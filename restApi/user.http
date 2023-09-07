@@ -1,18 +1,42 @@
 POST http://localhost:5500/users
 Content-Type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmOWNjNTM0ZGI0ZDBlOTg1NWEyNTljIiwicm9sZSI6ImVtcGxveWVlIn0sImlhdCI6MTY5NDA5MjM5MywiZXhwIjoxNjk0MTc4NzkzfQ.9Iy60urQoD7hzP76FkjAbuFDuWsAaDMCK9Dv79RhLKo
+
 
 {
-    "first_name" : "Naimov",
-    "last_name" : "Kuch",
-    "age": 12,
-    "role" : "admin",
-    "username" : "Qudrat",
+    "first_name" : "Kimdir",
+    "last_name" : "Kim11",
+    "age": 14,
+    "role" : "employee",
+    "username" : "user11",
     "password" : "1234"
 }
 ###
 POST http://localhost:5500/users/login
 Content-Type: application/json
+
 {
-    "username" : "Qandaydir",
-    "password" : "1234"
+    "username": "user10",
+    "password":"1234"
+}
+
+
+###
+Get http://localhost:5500/users/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmOWNjNTM0ZGI0ZDBlOTg1NWEyNTljIiwicm9sZSI6ImVtcGxveWVlIn0sImlhdCI6MTY5NDA5MjM5MywiZXhwIjoxNjk0MTc4NzkzfQ.9Iy60urQoD7hzP76FkjAbuFDuWsAaDMCK9Dv79RhLKo
+###
+Get http://localhost:5500/users
+Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmNWRlZmQ1NzM0ZTg0NjkxMTQ1NjZjIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDA3MjEwMywiZXhwIjoxNjk0MTU4NTAzfQ.NbW-J-ZMHM-jjM7wfa-mUFWGv5KULgPwbNKGb_emXwk
+
+
+###
+POST http://localhost:5500/guides
+Content-Type: application/json
+
+{
+    "title": "xat2",
+    "content":"nimadir2",
+    "notify": false
 }

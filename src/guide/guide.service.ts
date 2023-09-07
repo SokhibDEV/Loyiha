@@ -4,8 +4,10 @@ import { UpdateGuideDto } from './dto/update-guide.dto';
 
 @Injectable()
 export class GuideService {
-  create(createGuideDto: CreateGuideDto) {
-    return 'This action adds a new guide';
+  
+  create(data: CreateGuideDto) {
+     console.log(data);
+    
   }
 
   findAll() {
