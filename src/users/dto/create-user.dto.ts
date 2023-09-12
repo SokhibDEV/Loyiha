@@ -1,6 +1,5 @@
-import { IsEnum, IsString, IsNumber } from 'class-validator';
+import { IsEnum, IsNumber, IsString } from 'class-validator';
 import { Role } from 'src/shared/enums';
-
 
 export class CreateUserDto {
   @IsString()
@@ -21,5 +20,3 @@ export class CreateUserDto {
   @IsString()
   password: string;
 }
-
-

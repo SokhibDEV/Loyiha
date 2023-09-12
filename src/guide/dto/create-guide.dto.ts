@@ -1,12 +1,12 @@
-import { IsBoolean, IsString } from "class-validator"
+import { IsBoolean, IsString } from 'class-validator';
 
 export class CreateGuideDto {
-    @IsString()
-    title: string
-    
-    @IsString()
-    content:string
+  @IsString()
+  title: string;
 
-    @IsBoolean()
-    notify:boolean
+  @IsString()
+  content: string;
+
+  @IsBoolean()
+  notify: boolean;
 }

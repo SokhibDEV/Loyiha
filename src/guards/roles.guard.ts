@@ -7,7 +7,6 @@ import {
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 
-
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor(
@@ -25,7 +24,6 @@ export class RolesGuard implements CanActivate {
     }
 
     const request = context.switchToHttp().getRequest();
-    
 
     let arr = request.rawHeaders;
     let text = null;
@@ -35,7 +33,7 @@ export class RolesGuard implements CanActivate {
         return text;
       }
     });
-    const token = text.replace("Bearer", '').trim();
+    const token = text.replace('Bearer', '').trim();
 
     const { user } = this.jwtService.verify(token);
 
@@ -46,5 +44,4 @@ export class RolesGuard implements CanActivate {
     }
     return true;
   }
-  
 }

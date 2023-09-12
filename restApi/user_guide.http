@@ -1,0 +1,20 @@
+###
+GET http://localhost:5500/user-guides
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDQ2NzI5MiwiZXhwIjoxNjk0NTUzNjkyfQ.GRJMUOuiWOfKdmfm58m7rY_Vr0D-JmY6dsCD5VVZdNE
+
+###
+POST http://localhost:5500/user-guides/65005c3e07e791dfc1e7d7af/read
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDQ2NzI5MiwiZXhwIjoxNjk0NTUzNjkyfQ.GRJMUOuiWOfKdmfm58m7rY_Vr0D-JmY6dsCD5VVZdNE
+
+
+###
+POST http://localhost:5500/user-guides/bulk
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDQ2NzI5MiwiZXhwIjoxNjk0NTUzNjkyfQ.GRJMUOuiWOfKdmfm58m7rY_Vr0D-JmY6dsCD5VVZdNE
+
+{
+    "guide_id" : "6500ae58d44f48a77276538f",
+     "user_ids":["64feefa393e50108e1c4bb46", "64fef0e3bd15fb1ebd346ccc"]
+}

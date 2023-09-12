@@ -1,10 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-
 export type GuideDocument = HydratedDocument<Guide>;
 
-@Schema()
+@Schema({
+  versionKey: false,
+})
 export class Guide {
   @Prop({
     type: String,
@@ -16,16 +17,16 @@ export class Guide {
     type: String,
     required: true,
   })
- 
   content: string;
   @Prop({
     type: Boolean,
-    required: true,
   })
- 
   notify: boolean;
- 
+
+  @Prop({
+    type: Number,
+  })
+  revisions: number;
 }
 
-export const GuidSchema = SchemaFactory.createForClass(Guide);
-
+export const GuideSchema = SchemaFactory.createForClass(Guide);

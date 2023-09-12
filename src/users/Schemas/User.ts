@@ -4,7 +4,16 @@ import { Role } from 'src/shared/enums';
 
 export type UserDocument = HydratedDocument<User>;
 
-@Schema()
+@Schema({
+  versionKey: false,
+  toJSON: {
+    virtuals: true,
+    transform: (doc, ret) => {
+      ret._id = ret.id;
+      delete ret._id;
+    },
+  },
+})
 export class User {
   @Prop({
     type: String,
@@ -31,7 +40,7 @@ export class User {
   @Prop({
     type: String,
     required: true,
-    unique:true,
+    unique: true,
   })
   username: string;
   @Prop({

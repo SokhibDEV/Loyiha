@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MongooseModule } from '@nestjs/mongoose';
-import { UsersModule } from './users/users.module';
 import { GuideModule } from './guide/guide.module';
 import { UserGuideModule } from './user-guide/user-guide.module';
-
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -15,9 +14,6 @@ import { UserGuideModule } from './user-guide/user-guide.module';
     UserGuideModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    
-  ],
+  providers: [AppService],
 })
 export class AppModule {}

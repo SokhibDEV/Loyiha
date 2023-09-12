@@ -1,34 +1,35 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Headers, Query } from '@nestjs/common';
 import { UserGuideService } from './user-guide.service';
 import { CreateUserGuideDto } from './dto/create-user-guide.dto';
 import { UpdateUserGuideDto } from './dto/update-user-guide.dto';
+import { AuthGuard } from 'src/guards/auth.guard';
+import { FindUserGuideDto } from './dto/find-userguide.dto';
+import { Roles } from 'src/guards/roller.decorator';
+import { Role } from 'src/shared/enums';
+import { RolesGuard } from 'src/guards/roles.guard';
 
-@Controller('user-guide')
+
+@Controller('user-guides')
 export class UserGuideController {
   constructor(private readonly userGuideService: UserGuideService) {}
 
-  @Post()
-  create(@Body() createUserGuideDto: CreateUserGuideDto) {
-    return this.userGuideService.create(createUserGuideDto);
-  }
-
+  @UseGuards(AuthGuard)
   @Get()
-  findAll() {
-    return this.userGuideService.findAll();
+  findOne(@Headers('Authorization') authorization: string, @Query() data : FindUserGuideDto) {
+    return this.userGuideService.findOne(authorization, data);
+  }
+  @UseGuards(AuthGuard)
+  @Post('/:id/read')
+  readGuide(@Headers('Authorization') authorization: string, @Param('id') id :string){
+    return this.userGuideService.readGuide(authorization, id)
+  }
+  @Roles(Role.ADMIN)
+  @UseGuards(RolesGuard)
+  @UseGuards(AuthGuard)
+  @Post('/bulk')
+  bulk(@Body() data : any){
+    return  this.userGuideService.bulk(data)
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userGuideService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserGuideDto: UpdateUserGuideDto) {
-    return this.userGuideService.update(+id, updateUserGuideDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userGuideService.remove(+id);
-  }
+  
 }

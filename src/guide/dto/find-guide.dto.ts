@@ -1,9 +1,9 @@
 import { Type } from 'class-transformer';
 import { IsEnum, IsOptional, IsString, ValidateNested } from 'class-validator';
-import { Role, SortOrder } from 'src/shared/enums';
+import { SortOrder } from 'src/shared/enums';
 import { OffsetPaginationDto } from 'src/shared/offset-pagination.dto';
 
-export class SortUserDto {
+export class SortGuideDto {
   @IsOptional()
   @IsEnum(['id', 'age'])
   by: string = 'id';
@@ -13,13 +13,7 @@ export class SortUserDto {
   order: SortOrder = SortOrder.ASC;
 }
 
-export class FilterUserDto {
-  @IsOptional()
-  @IsEnum(Role)
-  role?: Role;
-}
-
-export class FindUserDto {
+export class FindGuideDto {
   @IsOptional()
   @IsString()
   q?: string;
@@ -31,11 +25,6 @@ export class FindUserDto {
 
   @IsOptional()
   @ValidateNested()
-  @Type(() => SortUserDto)
-  sort?: SortUserDto;
-
-  @IsOptional()
-  @ValidateNested()
-  @Type(() => FilterUserDto)
-  filters?: FilterUserDto;
+  @Type(() => SortGuideDto)
+  sort?: SortGuideDto;
 }

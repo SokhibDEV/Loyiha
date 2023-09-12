@@ -4,9 +4,9 @@ import { IsInt } from 'class-validator';
 export class OffsetPaginationDto {
   @IsInt()
   @Transform(({ value }) => +value)
-  offset: number;
+  offset?: number;
 
   @IsInt()
   @Transform(({ value }) => +value)
-  limit: number;
+  limit?: number;
 }
