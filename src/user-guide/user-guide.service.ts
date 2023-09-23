@@ -2,10 +2,8 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserGuide } from './Schemas/user-guide.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { JwtService } from '@nestjs/jwt';
 import { FindUserGuideDto } from './dto/find-userguide.dto';
 import { User } from 'src/users/Schemas/User';
-import { CreateUserGuideDto } from './dto/create-user-guide.dto';
 
 @Injectable()
 export class UserGuideService {
@@ -14,21 +12,19 @@ export class UserGuideService {
     private userGuideModel: Model<UserGuide>,
     @InjectModel(User.name)
     private userModel: Model<User>,
-    private jwtService: JwtService,
   ) {}
 
   async findOne(
-    authorization: string,
+    id: string,
     { page = { offset: 0, limit: 10 }, filters = {} }: FindUserGuideDto,
   ) {
-    const token = authorization.replace('Bearer', '').trim();
-    const { user } = this.jwtService.verify(token);
-    const existingUser = await this.userModel.findById(user.id);
+
+    const existingUser = await this.userModel.findById(id);
     if (!existingUser)
       throw new UnauthorizedException('Bunday User mavjud emas!');
 
     const res = await this.userGuideModel
-      .find({ user_id: user.id })
+      .find({ user_id: id })
       .find(filters)
       .populate([{ path: 'guide_id' }])
       .select('complated')
@@ -36,7 +32,7 @@ export class UserGuideService {
       .limit(page.limit);
 
     const total = await this.userGuideModel.countDocuments({
-      user_id: user.id,
+      user_id: id,
     });
     const pageInfo = {
       total,
@@ -46,11 +42,8 @@ export class UserGuideService {
     return { data: res, pageInfo };
   }
 
-  async readGuide(authorization: string, id: string) {
-    const token = authorization.replace('Bearer', '').trim();
-    const { user } = await this.jwtService.verify(token);
-
-    const findUser = await this.userGuideModel.find({ user_id: user.id });
+  async readGuide(userId: string, id: string) {
+    const findUser = await this.userGuideModel.find({ user_id: userId });
 
     const arr = [];
 
@@ -61,23 +54,25 @@ export class UserGuideService {
       }
     }
 
-    const updateUserGuide = await this.userGuideModel.findByIdAndUpdate(id, arr[0])
+    const updateUserGuide = await this.userGuideModel.findByIdAndUpdate(
+      id,
+      arr[0],
+    );
 
     return { data: arr[0] };
   }
 
-  async bulk({guide_id, user_ids}: any){
-
+  async bulk({ guide_id, user_ids }: any) {
     for (const item of user_ids) {
       const createUserGuide = await this.userGuideModel.create({
         user_id: item,
         guide_id,
-        complated:false
-      })
+        complated: false,
+      });
     }
-    
-     return {
-      "massage": "Create UserGuide!"
-     }
+
+    return {
+      massage: 'Create UserGuide!',
+    };
   }
 }

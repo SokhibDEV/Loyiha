@@ -4,14 +4,14 @@
 
 POST http://localhost:5500/users
 Content-Type: application/json 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDUyMzIxNiwiZXhwIjoxNjk0NjA5NjE2fQ.Cn2qUIZ1RgU6KecwalDO29PSCS6YloRD6w9rMeNCgc4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NTQ1OTU2NywiZXhwIjoxNjk1NTQ1OTY3fQ.LPX-0fT-7wTsertWstgwd26rMxeMuxfO5236LLThaIk
 
 {
-    "first_name" : "Dilshod",
-    "last_name" : "Karimov",
-    "age": 19,
-    "role" : "employee",
-    "username" : "user3",
+    "first_name" : "Faruh",
+    "last_name" : "Fayziyev",
+    "age": 28,
+    "role" : "admin",
+    "username" : "user4",
     "password" : "1234"
 }
 
@@ -20,7 +20,7 @@ POST http://localhost:5500/users/login
 Content-Type: application/json
 
 {
-    "username": "user3",
+    "username": "user",
     "password":"1234"
 }
 
@@ -29,41 +29,41 @@ Content-Type: application/json
 ###
 Get http://localhost:5500/users/me
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMGFiZjRkNDRmNDhhNzcyNzY1MzdhIiwicm9sZSI6ImVtcGxveWVlIn0sImlhdCI6MTY5NDU0Mjg3NCwiZXhwIjoxNjk0NjI5Mjc0fQ.3tAAEHdrmOdWJ3kcCpUv2-3isCPFnG052s1z3RUm934
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NTQ1OTU2NywiZXhwIjoxNjk1NTQ1OTY3fQ.LPX-0fT-7wTsertWstgwd26rMxeMuxfO5236LLThaIk
 ###
 
-Get http://localhost:5500/users 
+Get http://localhost:5500/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDUyMzIxNiwiZXhwIjoxNjk0NjA5NjE2fQ.Cn2qUIZ1RgU6KecwalDO29PSCS6YloRD6w9rMeNCgc4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NTQ1OTU2NywiZXhwIjoxNjk1NTQ1OTY3fQ.LPX-0fT-7wTsertWstgwd26rMxeMuxfO5236LLThaIk
 
 ###
-Get http://localhost:5500/users/6500abf4d44f48a77276537a
+Get http://localhost:5500/users/650ea9114e7a9d37d6c0db74
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMGFiZjRkNDRmNDhhNzcyNzY1MzdhIiwicm9sZSI6ImVtcGxveWVlIn0sImlhdCI6MTY5NDU0Mjg3NCwiZXhwIjoxNjk0NjI5Mjc0fQ.3tAAEHdrmOdWJ3kcCpUv2-3isCPFnG052s1z3RUm934
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NTQ1OTU2NywiZXhwIjoxNjk1NTQ1OTY3fQ.LPX-0fT-7wTsertWstgwd26rMxeMuxfO5236LLThaIk
 
 
 ###
-PATCH http://localhost:5500/users/6500abf4d44f48a77276537a
+PATCH http://localhost:5500/users/650ea9114e7a9d37d6c0db74
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDUyMzIxNiwiZXhwIjoxNjk0NjA5NjE2fQ.Cn2qUIZ1RgU6KecwalDO29PSCS6YloRD6w9rMeNCgc4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NTQ1OTU2NywiZXhwIjoxNjk1NTQ1OTY3fQ.LPX-0fT-7wTsertWstgwd26rMxeMuxfO5236LLThaIk
 
 {
-    "first_name":"Ravshan",
-    "last_name":"Gulov",
-    "age": 22,
-    "role": "employee",
-    "username": "user3",
+    "first_name":"Farux",
+    "last_name":"Fayziyev",
+    "age": 24,
+    "role": "admin",
+    "username": "user4",
     "password": "1234"
 }
 
 ###
 PATCH http://localhost:5500/users/me
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDUyMzIxNiwiZXhwIjoxNjk0NjA5NjE2fQ.Cn2qUIZ1RgU6KecwalDO29PSCS6YloRD6w9rMeNCgc4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NTQ1OTU2NywiZXhwIjoxNjk1NTQ1OTY3fQ.LPX-0fT-7wTsertWstgwd26rMxeMuxfO5236LLThaIk
 
 {
-    "first_name":"Begzod",
-    "last_name":"Yunosov",
+    "first_name":"Soxib",
+    "last_name":"Amonov",
     "age": 22,
     "role": "admin",
     "username": "user",
@@ -71,6 +71,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiN
 }
 
 ###
-DELETE  http://localhost:5500/users/64f3225440967642522b3a1c
+DELETE  http://localhost:5500/users/64fef0e3bd15fb1ebd346ccc
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmMzIyNTQ0MDk2NzY0MjUyMmIzYTFjIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NDE4MjE2NSwiZXhwIjoxNjk0MjY4NTY1fQ.4VXlNxkJ-jwpE18OVXb1irHICxUnwG33PAhWVr7JWTk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmZWVmYTM5M2U1MDEwOGUxYzRiYjQ2Iiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY5NTQ1OTU2NywiZXhwIjoxNjk1NTQ1OTY3fQ.LPX-0fT-7wTsertWstgwd26rMxeMuxfO5236LLThaIk

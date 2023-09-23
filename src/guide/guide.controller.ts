@@ -23,7 +23,7 @@ export class GuideController {
 
   @Post()
   @Roles(Role.ADMIN)
-  @UseGuards(RolesGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   create(@Body() data: CreateGuideDto) {
     return this.guideService.create(data);
   }
@@ -40,7 +40,7 @@ export class GuideController {
 
   @Patch(':id')
   @Roles(Role.ADMIN)
-  @UseGuards(RolesGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   updata(@Param('id') id: string, @Body() data: UpdateGuideDto) {
     return this.guideService.update(id, data);
   }

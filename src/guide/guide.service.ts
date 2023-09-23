@@ -60,12 +60,12 @@ export class GuideService {
       .sort({ [sort.by]: sort.order })
       .skip(page.offset)
       .limit(page.limit);
-    const data = await this.guideModel.find();
+   
 
     return {
       data:result,
       pageInfo: {
-        total: Math.ceil(data.length / page.limit),
+        total: result.length,
         offset: page.offset,
         limit: page.limit,
       },

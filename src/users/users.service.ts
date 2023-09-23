@@ -24,7 +24,7 @@ export class UsersService {
     private jwtService: JwtService,
   ) {}
 
-  async create(data: CreateUserDto): Promise<String | any> {
+  async create(data: CreateUserDto) {
     const updatedValues: { password?: string } = {};
 
     updatedValues.password = await hash(data.password, 10);
@@ -32,7 +32,7 @@ export class UsersService {
     return user;
   }
 
-  async signIn(username: string, password: string): Promise<any> {
+  async signIn(username: string, password: string) {
     const user = await this.userModel.findOne({ username });
 
     const isMatch = await compare(password, user.password);
@@ -84,22 +84,18 @@ export class UsersService {
       .skip(page.offset)
       .limit(page.limit);
 
-    const data = await this.userModel.find();
     return {
       data: result,
       pageInfo: {
-        total: Math.ceil(data.length / page.limit),
+        total: result.length,
         offset: page.offset,
         limit: page.limit,
       },
     };
   }
 
-  async findOne(authorization: string) {
-    const token = authorization.replace('Bearer', '').trim();
-    const { user } = this.jwtService.verify(token);
-
-    const findUserGuide = await this.userGuiteModel.find({ user_id: user.id });
+  async findOne(id: string) {
+    const findUserGuide = await this.userGuiteModel.find({ user_id: id });
     const total_guides = findUserGuide.length;
     let arr = [];
 
@@ -118,20 +114,18 @@ export class UsersService {
     ]);
 
     let arr1 = [];
-
     for (const item of aggragetUser) {
-      if (item._id.toString() === user.id) {
+      if (item._id.toString() === id) {
         arr1.push(item);
       }
     }
 
     return { data: arr1[0] };
   }
-  async updateUser(authorization: string, data: UpdateUserDto) {
-    const token = authorization.replace('Bearer', '').trim();
-    const { user } = this.jwtService.verify(token);
+  async updateUser(id: string, data: UpdateUserDto) {
+   
 
-    const findUser = await this.userModel.findById(user.id);
+    const findUser = await this.userModel.findById(id);
 
     const { role, password } = findUser;
     const { first_name, last_name, age, username } = data;
@@ -144,7 +138,7 @@ export class UsersService {
       password,
     };
 
-    return this.userModel.findByIdAndUpdate(user.id, newData);
+    return this.userModel.findByIdAndUpdate(id, newData);
   }
 
   async findUser(id: string) {
@@ -197,15 +191,14 @@ export class UsersService {
     return this.userModel.findByIdAndUpdate(id, data);
   }
 
-  async remove(id: string, authorization: string) {
-    const token = authorization.replace('Bearer', '').trim();
-    const { user } = this.jwtService.verify(token);
+  async remove(id: string, userId: string) {
+    ;
 
     const findUser = await this.userModel.findById(id);
     if (!findUser) {
       throw new NotFoundException('User topilmadi.');
     }
-    if (user.id !== id) {
+    if (userId !== id) {
       const UserDeleted = await this.userModel.findByIdAndRemove(id);
 
       return {

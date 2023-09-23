@@ -3,12 +3,13 @@ import {
   Controller,
   Delete,
   Get,
-  Headers,
   Param,
   Patch,
   Post,
   Query,
   UseGuards,
+  Request,
+  Req,
 } from '@nestjs/common';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { RolesGuard } from 'src/guards/roles.guard';
@@ -23,11 +24,9 @@ import { UsersService } from './users.service';
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-
   @Post()
   @Roles(Role.ADMIN)
-  @UseGuards(RolesGuard)
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   create(@Body() data: CreateUserDto) {
     return this.usersService.create(data);
   }
@@ -39,45 +38,38 @@ export class UsersController {
 
   @Get()
   @Roles(Role.ADMIN)
-  @UseGuards(RolesGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   findAll(@Query() findUserDto: FindUserDto) {
     return this.usersService.findAll(findUserDto);
   }
 
   @Get('/me')
   @UseGuards(AuthGuard)
-  findOne(@Headers('Authorization') authorization: string) {
-    return this.usersService.findOne(authorization);
+  findOne(@Req() req: Request) {
+    return this.usersService.findOne(req['user'].id);
   }
   @Patch('/me')
   @UseGuards(AuthGuard)
-  updateUser(
-    @Headers('Authorization') authorization: string,
-    @Body() data: UpdateUserDto,
-  ) {
-    return this.usersService.updateUser(authorization, data);
+  updateUser(@Req() req: Request, @Body() data: UpdateUserDto) {
+    return this.usersService.updateUser(req['user'].id, data);
   }
   @Get('/:id')
   @Roles(Role.ADMIN)
-  @UseGuards(RolesGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   findUser(@Param('id') id: string) {
     return this.usersService.findUser(id);
   }
 
   @Patch(':id')
   @Roles(Role.ADMIN)
-  @UseGuards(RolesGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);
   }
   @Roles(Role.ADMIN)
-  @UseGuards(RolesGuard)
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   @Delete(':id')
-  remove(
-    @Param('id') id: string,
-    @Headers('Authorization') authorization: string,
-  ) {
-    return this.usersService.remove(id, authorization);
+  remove(@Param('id') id: string, @Req() req: Request) {
+    return this.usersService.remove(id, req['user'].id);
   }
 }
